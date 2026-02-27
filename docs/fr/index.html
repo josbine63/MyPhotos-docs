@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPhotos - Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 16px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .lang-switch {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .lang-switch:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: white;
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .header-icon {
+            font-size: 80px;
+            margin-bottom: 16px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        header .tagline {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #764ba2;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #764ba2;
+            margin: 24px 0 12px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: #4a5568;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: #f7fafc;
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+        }
+
+        .feature-card.blue { border-left-color: #3182ce; }
+        .feature-card.orange { border-left-color: #ed8936; }
+        .feature-card.red { border-left-color: #e53e3e; }
+        .feature-card.green { border-left-color: #38a169; }
+
+        .feature-card .icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+        }
+
+        .feature-card p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Guide Steps */
+        .guide-steps {
+            counter-reset: step;
+        }
+
+        .step {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 24px;
+        }
+
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            margin-top: 0;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 16px 0;
+        }
+
+        .code-block .keyword { color: #f687b3; }
+        .code-block .string { color: #68d391; }
+        .code-block .comment { color: #718096; }
+        .code-block .type { color: #63b3ed; }
+
+        /* FAQ */
+        .faq-item {
+            background: #f7fafc;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #667eea;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 24px 20px;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Tech Badges */
+        .tech-badges {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+
+        .tech-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .tech-badge.swiftui { background: #e6f0ff; color: #3182ce; }
+        .tech-badge.photokit { background: #f0e6ff; color: #764ba2; }
+        .tech-badge.concurrency { background: #fff0e6; color: #ed8936; }
+        .tech-badge.macos { background: #e6fff0; color: #38a169; }
+
+        /* Privacy */
+        .privacy-highlight {
+            background: #e6f4ea;
+            border-left: 4px solid #34a853;
+            padding: 20px 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+        }
+
+        .privacy-highlight h3 {
+            color: #1e7e34;
+            margin-top: 0;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .contact-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact-card .icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 24px;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .step {
+                padding-left: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="#" class="logo">
+                <span class="logo-icon">📸</span>
+                <span>MyPhotos</span>
+            </a>
+            <div class="nav-links">
+                <a href="#fonctionnalites">Fonctionnalités</a>
+                <a href="#guide">Guide</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <a href="../en/" class="lang-switch">🇬🇧 English</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-icon">📸</div>
+        <h1>MyPhotos</h1>
+        <p class="tagline">Gérez vos albums partagés iCloud en toute simplicité</p>
+        <div class="badges">
+            <span class="badge">💻 macOS</span>
+            <span class="badge">☁️ iCloud</span>
+            <span class="badge">🔄 Sync Auto</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Introduction -->
+        <section id="introduction">
+            <h2>Présentation</h2>
+            <p>
+                <strong>MyPhotos</strong> est une application macOS conçue pour gérer vos albums photos partagés iCloud.
+                Elle offre des fonctionnalités avancées pour copier, synchroniser et gérer les doublons
+                dans votre bibliothèque Photos.
+            </p>
+            <p>
+                L'application utilise un algorithme de hash perceptuel pour détecter les photos en double,
+                même si elles ont été compressées ou légèrement modifiées par les albums partagés iCloud.
+            </p>
+
+            <h3>Technologies utilisées</h3>
+            <div class="tech-badges">
+                <span class="tech-badge swiftui">SwiftUI</span>
+                <span class="tech-badge photokit">PhotoKit</span>
+                <span class="tech-badge concurrency">Swift Concurrency</span>
+                <span class="tech-badge macos">macOS 13+</span>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="fonctionnalites">
+            <h2>Fonctionnalités</h2>
+            <div class="features-grid">
+                <div class="feature-card blue">
+                    <div class="icon">📥</div>
+                    <h3>Copier les albums partagés</h3>
+                    <p>Copiez les photos et vidéos des albums partagés iCloud vers votre bibliothèque locale avec détection automatique des doublons.</p>
+                </div>
+                <div class="feature-card orange">
+                    <div class="icon">🔍</div>
+                    <h3>Rechercher les doublons</h3>
+                    <p>Analysez votre bibliothèque pour trouver les photos en double grâce à un algorithme de hash perceptuel (256 bits).</p>
+                </div>
+                <div class="feature-card red">
+                    <div class="icon">🗑️</div>
+                    <h3>Éliminer les doublons</h3>
+                    <p>Fusionnez les groupes de doublons en gardant une seule copie dans tous les albums concernés.</p>
+                </div>
+                <div class="feature-card green">
+                    <div class="icon">🔄</div>
+                    <h3>Synchronisation automatique</h3>
+                    <p>Surveillez les albums partagés et copiez automatiquement les nouvelles photos toutes les 30 secondes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Copie d'albums -->
+        <section id="copie">
+            <h2>Copie d'albums partagés</h2>
+            <p>
+                Cette fonctionnalité permet de copier les photos et vidéos des albums partagés iCloud
+                vers votre bibliothèque Photos locale. Les albums partagés sont des albums que vous
+                partagez avec d'autres utilisateurs iCloud ou qui ont été partagés avec vous.
+            </p>
+
+            <h3>Modes de copie</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">⚡</div>
+                    <h3>Sans interruption</h3>
+                    <p>Copie tous les albums sélectionnés sans pause entre chaque album.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">✋</div>
+                    <h3>Avec confirmation</h3>
+                    <p>Demande une confirmation avant de commencer la copie de chaque album.</p>
+                </div>
+            </div>
+
+            <h3>Détection des doublons</h3>
+            <p>Lors de la copie, l'application détecte automatiquement les doublons en utilisant :</p>
+            <ul style="margin-left: 24px; margin-bottom: 16px;">
+                <li>La date de création et les dimensions de l'image</li>
+                <li>Un algorithme de hash perceptuel (16×16 = 256 bits)</li>
+                <li>Une tolérance de 5% sur la distance de Hamming</li>
+                <li>Une tolérance de ±2 secondes sur la date et ±1 pixel sur les dimensions</li>
+            </ul>
+        </section>
+
+        <!-- Architecture -->
+        <section id="architecture">
+            <h2>Architecture</h2>
+            <p>
+                L'application utilise le pattern <strong>MVVM</strong> (Model-View-ViewModel) avec SwiftUI
+                et Swift Concurrency pour les opérations asynchrones.
+            </p>
+
+            <h3>Structure des fichiers</h3>
+            <div class="code-block">
+<span class="comment">// Structure du projet</span>
+MyPhotos/
+├── <span class="type">MyPhotosApp.swift</span>      <span class="comment">// Point d'entrée</span>
+├── <span class="type">ContentView.swift</span>      <span class="comment">// Vue principale + navigation</span>
+├── <span class="type">HomeView.swift</span>         <span class="comment">// Écran d'accueil</span>
+├── <span class="type">PhotosManager.swift</span>    <span class="comment">// ViewModel principal</span>
+├── <span class="type">SharedAlbum.swift</span>      <span class="comment">// Modèle album partagé</span>
+└── <span class="type">ProgressView.swift</span>     <span class="comment">// Vue de progression</span>
+            </div>
+
+            <h3>PhotosManager</h3>
+            <p>
+                Le <code>PhotosManager</code> est la classe centrale qui gère toutes les interactions avec
+                la bibliothèque Photos. Elle est marquée <code>@MainActor</code> et <code>@Observable</code>
+                pour garantir les mises à jour UI sur le thread principal.
+            </p>
+
+            <div class="code-block">
+<span class="keyword">@MainActor</span>
+<span class="keyword">@Observable</span>
+<span class="keyword">class</span> <span class="type">PhotosManager</span> {
+    <span class="keyword">var</span> authorizationStatus: <span class="type">PHAuthorizationStatus</span>
+    <span class="keyword">var</span> sharedAlbums: [<span class="type">SharedAlbum</span>] = []
+    <span class="keyword">var</span> isCopying = <span class="keyword">false</span>
+    <span class="keyword">var</span> copyProgress: <span class="type">Double</span> = 0
+
+    <span class="keyword">func</span> copyAlbumsToLocal(albums: <span class="type">Set</span><<span class="type">SharedAlbum</span>>) <span class="keyword">async</span> { ... }
+    <span class="keyword">func</span> startSyncListener(<span class="keyword">for</span> albumIds: <span class="type">Set</span><<span class="type">String</span>>) { ... }
+    <span class="keyword">private func</span> isDuplicate(asset: <span class="type">PHAsset</span>) <span class="keyword">async</span> -> <span class="type">Bool</span> { ... }
+}
+            </div>
+
+            <h3>Algorithme de hash perceptuel</h3>
+            <p>Le hash perceptuel fonctionne ainsi :</p>
+            <ol style="margin-left: 24px; margin-bottom: 16px;">
+                <li>Redimensionne l'image en 256×256 pixels</li>
+                <li>Échantillonne 16×16 = 256 points</li>
+                <li>Convertit en niveaux de gris</li>
+                <li>Compare chaque pixel à la moyenne</li>
+                <li>Génère un hash binaire de 256 bits</li>
+            </ol>
+            <p>Deux images sont considérées identiques si leur distance de Hamming est ≤ 5%.</p>
+        </section>
+
+        <!-- Guide -->
+        <section id="guide">
+            <h2>Guide de démarrage</h2>
+
+            <div class="guide-steps">
+                <div class="step">
+                    <h3>Installation</h3>
+                    <p>Clonez le dépôt GitHub et ouvrez le projet dans Xcode 15 ou supérieur.</p>
+                </div>
+                <div class="step">
+                    <h3>Configuration des permissions</h3>
+                    <p>Au premier lancement, autorisez l'accès à votre bibliothèque Photos dans la boîte de dialogue.</p>
+                </div>
+                <div class="step">
+                    <h3>Sélectionnez des albums</h3>
+                    <p>Choisissez une fonctionnalité sur l'écran d'accueil, puis sélectionnez les albums à traiter.</p>
+                </div>
+                <div class="step">
+                    <h3>Lancez l'opération</h3>
+                    <p>Cliquez sur le bouton d'action et suivez la progression en temps réel.</p>
+                </div>
+            </div>
+
+            <h3>Configuration Info.plist</h3>
+            <p>L'application nécessite les clés suivantes dans Info.plist :</p>
+            <div class="code-block">
+<span class="keyword">&lt;key&gt;</span>NSPhotoLibraryUsageDescription<span class="keyword">&lt;/key&gt;</span>
+<span class="string">&lt;string&gt;</span>MyPhotos a besoin d'accéder à votre bibliothèque
+Photos pour copier les albums partagés.<span class="string">&lt;/string&gt;</span>
+
+<span class="keyword">&lt;key&gt;</span>NSPhotoLibraryAddUsageDescription<span class="keyword">&lt;/key&gt;</span>
+<span class="string">&lt;string&gt;</span>MyPhotos a besoin d'ajouter des photos à votre
+bibliothèque locale.<span class="string">&lt;/string&gt;</span>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq">
+            <h2>Questions fréquentes</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Comment fonctionne la détection des doublons ?</div>
+                <div class="faq-answer">
+                    <p>L'application utilise un algorithme de hash perceptuel qui analyse le contenu visuel de chaque image. Même si une photo a été compressée ou légèrement modifiée, elle sera détectée comme doublon si son apparence visuelle est similaire à plus de 95%.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Les photos originales sont-elles modifiées ?</div>
+                <div class="faq-answer">
+                    <p>Non, les photos des albums partagés ne sont jamais modifiées. L'application crée des copies locales dans votre bibliothèque Photos. Seule la suppression des doublons affecte votre bibliothèque locale.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Puis-je annuler une copie en cours ?</div>
+                <div class="faq-answer">
+                    <p>En mode "avec confirmation", vous pouvez arrêter la copie entre chaque album. Les photos déjà copiées resteront dans votre bibliothèque.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Que fait la synchronisation automatique ?</div>
+                <div class="faq-answer">
+                    <p>Elle surveille les albums sélectionnés toutes les 30 secondes et copie automatiquement les nouvelles photos vers votre bibliothèque locale, tout en évitant les doublons.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">L'application fonctionne-t-elle sur iOS ?</div>
+                <div class="faq-answer">
+                    <p>Actuellement, MyPhotos est conçu uniquement pour macOS. Une version iOS pourrait être développée dans le futur.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Mes données sont-elles envoyées quelque part ?</div>
+                <div class="faq-answer">
+                    <p>Non, l'application fonctionne entièrement en local. Vos photos ne quittent jamais votre Mac et aucune donnée n'est envoyée à des serveurs externes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy -->
+        <section id="confidentialite">
+            <h2>Confidentialité</h2>
+
+            <div class="privacy-highlight">
+                <h3>Toutes vos données restent sur votre Mac</h3>
+                <p>MyPhotos est une application 100% locale. Aucune donnée n'est collectée, stockée ou transmise à des serveurs externes.</p>
+            </div>
+
+            <h3>Ce que nous ne faisons PAS :</h3>
+            <ul style="margin-left: 24px; margin-bottom: 16px;">
+                <li>Nous ne collectons aucune information personnelle</li>
+                <li>Nous n'avons pas accès à vos photos</li>
+                <li>Nous n'utilisons aucun outil d'analyse</li>
+                <li>Nous n'affichons aucune publicité</li>
+            </ul>
+        </section>
+
+        <!-- Support -->
+        <section id="support">
+            <h2>Support et contact</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="icon">💬</div>
+                    <p>Assistance</p>
+                    <a href="mailto:support@josblais.com">support@josblais.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">💡</div>
+                    <p>Suggestions</p>
+                    <a href="mailto:feedback@josblais.com">feedback@josblais.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">🐛</div>
+                    <p>Signaler un bug</p>
+                    <a href="mailto:bugs@josblais.com">bugs@josblais.com</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 MyPhotos. Tous droits réservés. | <a href="../en/">English</a></p>
+    </footer>
+
+    <script>
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
