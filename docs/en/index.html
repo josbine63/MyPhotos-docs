@@ -49,7 +49,10 @@
         }
 
         .logo-icon {
-            font-size: 1.8rem;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            object-fit: cover;
         }
 
         .nav-links {
@@ -93,8 +96,12 @@
         }
 
         .header-icon {
-            font-size: 80px;
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            object-fit: cover;
             margin-bottom: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         header h1 {
@@ -375,7 +382,7 @@
     <nav>
         <div class="nav-content">
             <a href="#" class="logo">
-                <span class="logo-icon">📸</span>
+                <img src="../app-icon.png" alt="MyPhotos" class="logo-icon">
                 <span>MyPhotos</span>
             </a>
             <div class="nav-links">
@@ -389,7 +396,7 @@
     </nav>
 
     <header>
-        <div class="header-icon">📸</div>
+        <img src="../app-icon.png" alt="MyPhotos" class="header-icon">
         <h1>MyPhotos</h1>
         <p class="tagline">Manage your iCloud shared albums with ease</p>
         <div class="badges">
