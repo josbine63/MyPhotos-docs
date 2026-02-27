@@ -10,8 +10,8 @@ import SwiftUI
 @main
 struct MyPhotos_docsApp: App {
     var body: some Scene {
-        DocumentGroup(newDocument: MyPhotos_docsDocument()) { file in
-            ContentView(document: file.$document)
+        WindowGroup {
+            ContentView()
         }
     }
 }
