@@ -162,15 +162,11 @@ struct OverviewDocView: View {
         VStack(alignment: .leading, spacing: 24) {
             // Header
             HStack(spacing: 16) {
-                Image(systemName: "photo.stack.fill")
-                    .font(.system(size: 48))
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [.blue, .purple],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                Image(nsImage: NSApp.applicationIconImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 64, height: 64)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text("MyPhotos")
